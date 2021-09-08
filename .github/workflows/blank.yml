@@ -14,7 +14,6 @@ jobs:
   cherry_pick_release_v1_0:
     runs-on: ubuntu-latest
     name: Cherry pick into release-v1.0
-    if: contains('release-v1.0')
     steps:
       - name: Checkout
         uses: actions/checkout@v2
