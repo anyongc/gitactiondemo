@@ -19,6 +19,6 @@ jobs:
     - name: Create PR to branch
       uses: conker84/github-action-cherry-pick@master
       with:
-        pr_branch: 'release_v1.0.0'
+        pr_branch: 'release_v1.0'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
