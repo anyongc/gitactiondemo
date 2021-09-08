@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: PR for release branch
 
 # Controls when the workflow will run
 on:
@@ -9,23 +9,16 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
 jobs:
-  cherry_pick_release_v1_0:
+  release_pull_request:
     runs-on: ubuntu-latest
-    name: Cherry pick into release-v1.0
+    name: release_pull_request
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Cherry pick into release-v1.0
-        uses: carloscastrojumo/github-cherry-pick-action@v1.0.1
-        with:
-          branch: main
-          labels: |
-            cherry-pick
-          reviewers: |
-            aReviewerUser
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: checkout
+      uses: actions/checkout@v1
+    - name: Create PR to branch
+      uses: conker84/github-action-cherry-pick@master
+      with:
+        pr_branch: 'release-v1.0'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
