@@ -22,7 +22,7 @@ jobs:
       - name: Cherry pick into release-v1.0
         uses: carloscastrojumo/github-cherry-pick-action@v1.0.1
         with:
-          branch: release-v1.0
+          branch: main
           labels: |
             cherry-pick
           reviewers: |
