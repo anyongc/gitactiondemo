@@ -16,7 +16,7 @@ jobs:
       - name: Cherry pick action
         uses: carloscastrojumo/github-cherry-pick-action@v1.0.1
         with:
-          branch: final-stable
+          branch: release_v1.0
           committer: openhab-bot <info@openhab.org>
           labels: |
             cherry-pick
