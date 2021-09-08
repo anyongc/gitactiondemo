@@ -1,24 +1,26 @@
-# This is a basic workflow to help you get started with Actions
-
-name: PR for release branch
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main ]
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
+    types: ["closed"]
+
 jobs:
-  release_pull_request:
+  cherry_pick_release_v1_0:
     runs-on: ubuntu-latest
-    name: release_pull_request
+    name: Cherry pick into release-v1.0
+    if: contains(github.event.pull_request.labels.*.name, 'release-v1.0')
     steps:
-    - name: checkout
-      uses: actions/checkout@v1
-    - name: Create PR to branch
-      uses: conker84/github-action-cherry-pick@master
-      with:
-        pr_branch: 'release_v1.0'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Cherry pick into release-v1.0
+        uses: carloscastrojumo/github-cherry-pick-action@v1.0.1
+        with:
+          branch: release-v1.0
+          labels: |
+            cherry-pick
+          reviewers: |
+            aReviewerUser
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
