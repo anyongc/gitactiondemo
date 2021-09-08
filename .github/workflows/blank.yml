@@ -27,5 +27,6 @@ jobs:
             cherry-pick
           reviewers: |
             aReviewerUser
+          title: githubaction
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
